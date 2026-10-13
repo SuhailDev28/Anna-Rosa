@@ -166,6 +166,15 @@ function SectionHeading({ eyebrow, title, sub, aside }) {
     </div>
   );
 }
+// Resolve files from public/ on local Vite and GitHub Pages subpaths.
+// External CDN URLs are kept unchanged.
+function publicAsset(url) {
+  if (!url) return url;
+  if (/^(?:https?:)?\/\//i.test(url) || /^(?:data:|blob:)/i.test(url))
+    return url;
+  return `${import.meta.env.BASE_URL}${String(url).replace(/^\/+/, "")}`;
+}
+
 function Portrait({ className = "" }) {
   const [hasImage, setHasImage] = useState(true);
   return (
@@ -177,7 +186,7 @@ function Portrait({ className = "" }) {
       </div>
       {hasImage && (
         <img
-          src="/anna-portrait.jpg"
+          src={publicAsset("anna-portrait.jpg")}
           alt="Portrait of Anna Rossa Zalewski"
           onError={() => setHasImage(false)}
         />
@@ -224,7 +233,7 @@ function StoryVisual({ story }) {
       {showImage && (
         <img
           className="story-art-photo"
-          src={story.image}
+          src={publicAsset(story.image)}
           alt={story.imageAlt || story.name}
           loading="lazy"
           decoding="async"
