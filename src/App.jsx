@@ -68,6 +68,8 @@ function Logo() {
     </Link>
   );
 }
+const CV_PDF_URL = `${import.meta.env.BASE_URL}Anna_Rossa_Zalewski_Rose_CV.pdf`;
+
 function Header() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
@@ -93,9 +95,15 @@ function Header() {
           <NavLink to="/stories">My Stories</NavLink>
           <NavLink to="/leadership">Leadership</NavLink>
           <NavLink to="/contact">Contact</NavLink>
-          <Link to="/cv" className="nav-cv">
+          <a
+            href={CV_PDF_URL}
+            className="nav-cv"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Anna Rossa Zalewski CV PDF"
+          >
             View CV <ArrowUpRight size={15} />
-          </Link>
+          </a>
         </nav>
         <button
           className="menu-toggle"
@@ -135,7 +143,9 @@ function Footer() {
             <Link to="/ventures">Ventures</Link>
             <Link to="/stories">My Stories</Link>
             <Link to="/leadership">Leadership</Link>
-            <Link to="/cv">Curriculum Vitae</Link>
+            <a href={CV_PDF_URL} target="_blank" rel="noopener noreferrer">
+              Curriculum Vitae
+            </a>
             <a
               href={profile.linkedin}
               target="_blank"
@@ -894,12 +904,17 @@ function Contact() {
                   <ArrowUpRight size={22} />
                 </a>
               )}
-              <Link className="contact-link" to="/cv">
+              <a
+                className="contact-link"
+                href={CV_PDF_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span>
                   <Download size={24} /> View / save executive CV
                 </span>
                 <ArrowUpRight size={22} />
-              </Link>
+              </a>
               <p className="contact-note">
                 Direct email will appear once a verified address is added to
                 src/data.js.
