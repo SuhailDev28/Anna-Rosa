@@ -443,7 +443,7 @@ function Home() {
             <span>Entrepreneurial ventures</span>
           </div>
           <div>
-            <strong>870+</strong>
+            <strong>950+</strong>
             <span>Young athletes served*</span>
           </div>
           <div>
